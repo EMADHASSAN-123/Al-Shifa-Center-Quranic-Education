@@ -1,0 +1,183 @@
+<!--  دمج تفاعلي لجميع الأقسام باستخدام الهيكلية الجزئية (Modular Structure)  -->
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- ✅ SEO Meta Tags -->
+  <title>مركز الشفاء لتحفيظ وتعليم القرآن الكريم - الصفحة الرسمية</title>
+  <meta name="description" content="مركز الشفاء لتحفيظ القرآن الكريم في اليمن، يقدم حلقات قرآنية، دورات تعليمية، فعاليات ومسابقات لتأهيل جيل قرآني. انضم إلينا وكن من حفاظ كتاب الله.">
+  <meta name="keywords" content="مركز الشفاء, تحفيظ القرآن, تعليم القرآن, تلاوات, دورات قرآنية, حلقات تحفيظ, فعاليات قرآنية, اليمن, طلاب القرآن">
+  <meta name="author" content="عماد حسان">
+  <meta name="robots" content="index, follow">
+
+  <!-- ✅ Open Graph for social sharing -->
+  <meta property="og:title" content="مركز الشفاء لتحفيظ القرآن الكريم">
+  <meta property="og:description" content="صفحة رسمية للمركز تعرض خدماتنا وتلاوات الطلاب والفعاليات.">
+  <meta property="og:image" content="../img/logonew.png">
+  <meta property="og:type" content="website">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- تخصيص الألوان -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#d0b16b',
+            dark: '#161616'
+          }
+        }
+      }
+    }
+  </script>
+  <!-- <img src="../img/Imageslide1.jpg" alt="" srcset=""> -->
+
+  <!-- خطوط عربية -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- AOS Animation on Scroll -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- ✅ المحتوى الرئيسي الذي سيتم تحميله -->
+  <main id="main-content" role="main"></main>
+
+  <!-- ✅ تحميل الأقسام ديناميكيًا -->
+  <script>
+  
+  const sections = [
+      'header',
+        'hero',
+      'about',
+      'statistics',
+      'recitations',
+      'services',
+    ];
+    const main = document.getElementById('main-content');
+
+    sections.forEach(section => {
+      fetch(`${section}.html`)
+        .then(res => res.text())
+        .then(html => {
+          const container = document.createElement('div');
+          container.innerHTML = html;
+          container.setAttribute('data-aos', 'fade-up');
+          container.setAttribute('data-aos-duration', '800');
+          container.setAttribute('tabindex', '0'); // دعم الوصول
+          main.appendChild(container);
+        });
+    });
+  </script>
+    <!-- ✅ سكربت تبديل الصور التلقائي -->
+  <script>
+    const sliderImages = [
+      "../img/Imageslide1.jpg",
+      "../img/Imageslide2.jpg",
+      "../img/Imageslide4.jpg",
+      "../img/event4.jpg"
+    ];
+
+    let currentIndex = 0;
+    const heroImage = document.getElementById("heroImage");
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % sliderImages.length;
+      heroImage.classList.add("opacity-0");
+
+      setTimeout(() => {
+        heroImage.src = sliderImages[currentIndex];
+        heroImage.classList.remove("opacity-0");
+        heroImage.classList.add("opacity-100");
+      }, 300);
+    }, 5000);
+  </script>
+
+
+<script>
+  // ✅ تزايد الأرقام تدريجيًا
+  const counters = document.querySelectorAll('.counter');
+  const progresses = document.querySelectorAll('.progress');
+
+  const animateCounters = () => {
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      let count = 0;
+
+      const update = () => {
+        const increment = Math.ceil(target / 60); // السرعة
+        count += increment;
+        if (count >= target) {
+          count = target;
+          counter.textContent = target;
+        } else {
+          counter.textContent = count;
+          requestAnimationFrame(update);
+        }
+      };
+
+      update();
+    });
+
+    progresses.forEach(bar => {
+      const val = bar.getAttribute('data-progress');
+      bar.style.width = '0%';
+      setTimeout(() => {
+        bar.style.width = val + '%';
+        bar.style.transition = 'width 2s ease-in-out';
+      }, 300);
+    });
+  };
+
+  // ✅ تشغل العدادات عند ظهور القسم
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      animateCounters();
+      observer.disconnect();
+    }
+  }, { threshold: 0.5 });
+
+  const statsSection = document.getElementById('statistics');
+  observer.observe(statsSection);
+</script>
+
+<script>
+    const menuToggle = document.getElementById("menuToggle");
+    const closeMenu = document.getElementById("closeMenu");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.remove("translate-x-full");
+    });
+
+    closeMenu.addEventListener("click", () => {
+      mobileMenu.classList.add("translate-x-full");
+    });
+  </script>
+<!-- ✅ سكربت JavaScript لفتح وإغلاق القائمة الجانبية -->
+
+
+
+
+  <!-- ✅ AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+</body>
+</html>

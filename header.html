@@ -1,0 +1,55 @@
+<!-- ✅ هيدر الموقع مع قائمة تنقل متجاوبة باستخدام Tailwind CSS -->
+<header class="bg-[#161616] text-white flex items-center justify-between px-6 py-4 shadow-md">
+  <!-- شعار المركز -->
+  <div class="flex items-center space-x-4">
+    <img src="../img/logonew.png" alt="شعار مركز الشفاء" class="w-20 h-20 object-contain" />
+    <!-- <h1 class="text-xl font-bold hidden md:block">مركز الشفاء</h1> -->
+  </div>
+
+  <!-- قائمة الروابط الرئيسية (تظهر فقط في الشاشات الكبيرة) -->
+  <nav class="hidden lg:flex space-x-4 rtl:space-x-reverse">
+    <a href="index.php" class="hover:text-[#d0b16b] transition">الرئيسية</a>
+    <a href="#about-heading" class="hover:text-[#d0b16b] transition">من نحن</a>
+    <a href="#statistics-heading" class="hover:text-[#d0b16b] transition">احصائيات</a>
+    <a href="#recitations-heading" class="hover:text-[#d0b16b] transition">تلاوات</a>
+    <a href="#gallery" class="hover:text-[#d0b16b] transition">فعاليات</a>
+    <a href="dam.php" class="hover:text-[#d0b16b] transition">التبرع</a>
+    <a href="contact.php" class="hover:text-[#d0b16b] transition">اتصل بنا</a>
+    <a href="login.php" class="hover:text-[#d0b16b] transition">تسجيل الدخول</a>
+    <a href="blog.html" class="hover:text-[#d0b16b] transition">المدونة</a>
+    <a href="#openOpinionForm" class="hover:text-[#d0b16b] transition flex items-center">
+      <i class="fas fa-edit ml-1"></i> رأيك
+    </a>
+    <a href="#latest-news" class="hover:text-[#d0b16b] transition flex items-center">
+      <i class="fas fa-newspaper ml-1"></i> الأخبار
+    </a>
+  </nav>
+
+  <!-- زر فتح القائمة الجانبية في الموبايل -->
+  <button id="menuToggle" class="lg:hidden text-3xl focus:outline-none">
+    &#9776;
+  </button>
+
+  <!-- ✅ القائمة الجانبية للموبايل (تظهر عند الضغط على زر القائمة) -->
+  <div id="mobileMenu" class="fixed top-0 right-0 w-64 h-full bg-[#161616] text-white transform translate-x-full transition-transform duration-300 z-50 p-6 space-y-4">
+    <button id="closeMenu" class="text-3xl absolute top-4 left-4 text-[#d0b16b]">
+      &times;
+    </button>
+    <a href="index.php" class="block hover:text-[#d0b16b]">الرئيسية</a>
+    <a href="#about-heading" class="block hover:text-[#d0b16b]">من نحن</a>
+    <a href="#statistics-heading" class="block hover:text-[#d0b16b]">احصائيات</a>
+    <a href="#recitations-heading" class="block hover:text-[#d0b16b]">تلاوات</a>
+    <a href="#gallery" class="block hover:text-[#d0b16b]">فعاليات</a>
+    <a href="dam.php" class="block hover:text-[#d0b16b]">التبرع</a>
+    <a href="contact.php" class="block hover:text-[#d0b16b]">اتصل بنا</a>
+    <a href="login.php" class="block hover:text-[#d0b16b]">تسجيل الدخول</a>
+    <a href="blog.html" class="block hover:text-[#d0b16b]">المدونة</a>
+    <a href="#openOpinionForm" class="block hover:text-[#d0b16b] flex items-center">
+      <i class="fas fa-edit ml-1"></i> رأيك
+    </a>
+    <a href="#latest-news" class="block hover:text-[#d0b16b] flex items-center">
+      <i class="fas fa-newspaper ml-1"></i> الأخبار
+    </a>
+  </div>
+</header>
+  
